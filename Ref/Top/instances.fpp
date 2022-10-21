@@ -8,7 +8,7 @@ module Ref {
 
     constant queueSize = 10
 
-    constant stackSize = 64 * 1024
+    constant stackSize = 16 * 1024
 
   }
 
@@ -19,7 +19,14 @@ module Ref {
   instance blockDrv: Drv.BlockDriver base id 0x0100 \
     queue size Default.queueSize \
     stack size Default.stackSize \
-    priority 140
+    priority 140 \
+  {
+
+    phase Fpp.ToCpp.Phases.instances """
+    // Declared in RefTopologyDefs.cpp
+    """
+
+  }
 
   instance rateGroup1Comp: Svc.ActiveRateGroup base id 0x0200 \
     queue size Default.queueSize \
@@ -176,6 +183,11 @@ module Ref {
 
   }
 
+  instance mathSender: Ref.MathSender base id 0xE00 \
+    queue size Default.queueSize \
+    stack size Default.stackSize \
+    priority 100
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
@@ -218,6 +230,9 @@ module Ref {
   instance sendBuffComp: Ref.SendBuff base id 0x2600 \
     queue size Default.queueSize
 
+  instance mathReceiver: Ref.MathReceiver base id 0x2700 \
+    queue size Default.queueSize
+
   # ----------------------------------------------------------------------
   # Passive component instances
   # ----------------------------------------------------------------------
@@ -225,9 +240,12 @@ module Ref {
   @ Communications driver. May be swapped with other comm drivers like UART
   @ Note: Here we have TCP reliable uplink and UDP (low latency) downlink
   instance comm: Drv.ByteStreamDriverModel base id 0x4000 \
-    type "Drv::TcpClient" \
     at "../../Drv/TcpClient/TcpClient.hpp" \
   {
+
+    phase Fpp.ToCpp.Phases.instances """
+    Drv::TcpClient comm(FW_OPTIONAL_NAME("comm"));
+    """
 
     phase Fpp.ToCpp.Phases.configConstants """
     enum {
@@ -244,7 +262,6 @@ module Ref {
         comm.configure(state.hostName, state.portNumber);
         comm.startSocketTask(
             name,
-            true,
             ConfigConstants::comm::PRIORITY,
             ConfigConstants::comm::STACK_SIZE
         );
@@ -307,8 +324,14 @@ module Ref {
   }
 
   instance linuxTime: Svc.Time base id 0x4500 \
-    type "Svc::LinuxTime" \
-    at "../../Svc/LinuxTime/LinuxTime.hpp"
+    at "../../Svc/LinuxTime/LinuxTime.hpp" \
+  {
+
+    phase Fpp.ToCpp.Phases.instances """
+    Svc::LinuxTime linuxTime(FW_OPTIONAL_NAME("linuxTime"));
+    """
+
+  }
 
   instance rateGroupDriverComp: Svc.RateGroupDriver base id 0x4600 {
 
@@ -342,7 +365,5 @@ module Ref {
     """
 
   }
-
-  instance systemResources: Svc.SystemResources base id 0x4B00
 
 }
