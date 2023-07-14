@@ -1,4 +1,5 @@
 Aadil
+aarch
 abcd
 ABCDE
 ABCDEF
@@ -46,6 +47,7 @@ aps
 apxs
 AQuat
 AQueued
+arcsecond
 arduino
 argc
 argcomplete
@@ -77,6 +79,7 @@ autocoders
 autocoding
 autocompletion
 autodoc
+autodocs
 Autodocumentation
 autogen
 Autogenerate
@@ -105,6 +108,7 @@ bitmaps
 bitset
 ble
 blog
+blogs
 BLSPSERIALDRIVERCOMPONENTIMPLCFG
 bocchino
 bodychars
@@ -120,6 +124,7 @@ buf
 BUFFERALLOCATE
 BUFFERMANAGERCOMPONENTIMPLCFG
 BUFFERMGR
+BUFFQUEUEIN
 buffsize
 BUGLIST
 bugprone
@@ -149,6 +154,7 @@ cdn
 cerrno
 cface
 CFDP
+cff
 cflag
 cfsetispeed
 cfsetospeed
@@ -156,8 +162,10 @@ cgi
 changelog
 changeme
 CHANNELID
+CHANS
 chdir
 cheetahtemplate
+Chieu
 CHK
 CHNG
 chr
@@ -192,6 +200,8 @@ cntx
 cobj
 CODEFILE
 codegen
+codeql
+coldarm
 colno
 COLORSTYLE
 colorwheel
@@ -200,16 +210,21 @@ COMMANDDISPATCHERIMPL
 COMMANDDISPATCHERIMPLCFG
 commandline
 commasepitem
+COMBUFFER
 commonpath
 COMPACKET
 COMPONENTTESTERIMPL
+COMQUEUE
+COMQUEUEIN
 COMSPLITTER
 COMSTUB
+COMXBEE
 Concat
 config
 configparser
 configs
 configurability
+constexpr
 cookiecutter
 cooldown
 coor
@@ -224,6 +239,9 @@ Cpkt
 cplusplus
 CPOL
 cpos
+cppcheckxml
+cpplint
+cppcheck
 cppreference
 cprogramming
 cpuset
@@ -262,6 +280,7 @@ culates
 curdir
 curmsgs
 cuz
+ctu
 cwd
 CYCLEOUT
 cygwin
@@ -269,9 +288,9 @@ daringfireball
 Daruwala
 DASSERT
 databinding
+DATAROOTDIR
 datastore
 dawbarton
-db
 DBUILD
 DCMAKE
 DDDTHH
@@ -289,6 +308,7 @@ deframer
 deframing
 delchars
 delitem
+DENABLE
 deployables
 DEPRECATEDLIST
 deps
@@ -312,6 +332,7 @@ dicts
 dictvalue
 difflib
 diffs
+digitalcommons
 diles
 dinkel
 dirent
@@ -351,6 +372,7 @@ Doxywizard
 dpi
 DPRIVATE
 DPROTECTED
+DRAINBUFFERS
 drv
 drvipsocket
 drvsocketreadtask
@@ -371,6 +393,8 @@ dumpobj
 DVI
 DWN
 dylib
+eabi
+eabihf
 EACCES
 EAGAIN
 eay
@@ -428,6 +452,7 @@ ERRORCHECK
 errorlevel
 errornum
 ert
+ethanchee
 etime
 ETIMEDOUT
 eturn
@@ -439,6 +464,7 @@ EXAMPLECOMPONENTIMPL
 excinfo
 executables
 exitcode
+Exoplanets
 expandtabs
 expr
 exprtokens
@@ -448,10 +474,10 @@ fadvise
 FAKELOGGER
 fallocate
 fallthrough
+fbuild
 fcheck
 fclose
 fcntl
-fd
 fds
 fdset
 featuredarticles
@@ -492,6 +518,7 @@ foodoodiehoo
 fopen
 foreach
 formatline
+FPCONFIG
 fpconfighpp
 FPGA
 fpi
@@ -511,6 +538,8 @@ frontend
 frox
 frsize
 fsanitize
+fsanitizers
+fsblkcnt
 fscanf
 fstream
 fstrength
@@ -527,7 +556,9 @@ gbl
 gcc
 gcda
 gcgandhi
+gcno
 gcov
+gcovr
 gdb
 gdiplus
 gencode
@@ -546,6 +577,7 @@ gethostname
 getinput
 getitem
 getline
+getm
 getopt
 getoutput
 getpid
@@ -564,6 +596,7 @@ github
 gjslint
 glibc
 globals
+gmock
 gmtime
 Gnc
 Gnd
@@ -649,12 +682,14 @@ importables
 INADDR
 iname
 inbool
+INCLUDEDIR
 inet
 inin
 initfiles
 inits
 initstate
 inkscape
+inlined
 inode
 INOUT
 INPCK
@@ -664,10 +699,11 @@ instantiator
 instring
 instrlen
 integertypename
+interoperate
 intlimits
 ints
-Inttype
 inttype
+inttypes
 invisi
 ioc
 ioctl
@@ -694,9 +730,9 @@ isnan
 isoschematron
 isr
 ISREG
+iss
 isspace
 isupper
-ITAR
 itimerspec
 itle
 itr
@@ -745,18 +781,21 @@ lhash
 libc
 libclang
 libcrc
+LIBDIR
+LIBEXECDIR
 libgtest
 libiconv
 LIBLOC
 lic
 lindent
+linelength
 lineno
 lineroo
 lineterm
 linting
 linux
-LINUXUARTDRIVER
 LINUXTIMEIMPL
+LINUXUARTDRIVER
 Listst
 LJR
 lkml
@@ -764,6 +803,7 @@ lld
 llvm
 loadfile
 localhost
+LOCALSTATEDIR
 LOCKGUARDTESTER
 locs
 LOGASSERT
@@ -840,7 +880,6 @@ mname
 modbus
 MOSI
 MOVEFILE
-mq
 mqd
 mqueue
 Mrf
@@ -860,15 +899,18 @@ multiarch
 multioptionals
 multirequired
 multline
+multitool
 munmap
 mutex
 mutexattr
+Mutexed
 mutexes
 mval
 mycompany
 myfile
 myproject
 mytype
+namespaced
 nano
 nanosleep
 nargs
@@ -877,6 +919,7 @@ nbits
 ncsl
 NDELAY
 ndiffs
+neascout
 Netscape
 newloc
 newroot
@@ -884,12 +927,12 @@ newself
 newstring
 newtio
 nfds
-Nh
 Nicolich
 ninjaaron
 NMEA
 nmsgs
 noargport
+NOBLOCK
 NOCOLOR
 NOCTTY
 nodemon
@@ -899,6 +942,7 @@ nonblock
 noncomma
 NONINFRINGEMENT
 Nop
+noparent
 noreply
 noreturn
 normalwidths
@@ -914,6 +958,7 @@ NOTYPE
 Nowicki
 npm
 nproc
+npx
 NSHUFF
 NSPACES
 nukenewlines
@@ -930,9 +975,11 @@ objs
 oclc
 odl
 odo
+ofiles
 oflag
 okidocki
 oldeol
+OLDINCLUDEDIR
 OMG
 onchange
 onlinepubs
@@ -980,6 +1027,8 @@ params
 PARENB
 PARODD
 parseable
+PASSIVERATEGROUP
+PASSIVERATEGROUPIMPLTESTER
 pathlib
 pathmaker
 pbuild
@@ -998,12 +1047,15 @@ pkts
 plainnat
 plantuml
 plugin
+plugins
 pname
 png
 PNGs
+POLLERR
 pollerr
 pollfd
 POLLIN
+POLLPRI
 pollpri
 POLYDB
 POLYDBCOMP
@@ -1058,6 +1110,7 @@ ptmcg
 pton
 ptr
 ptype
+puml
 punc
 pushd
 pwd
@@ -1084,12 +1137,15 @@ QNX
 qsf
 qtest
 qthelpproject
+Qualcomm
 quatchan
+quoteattr
 RAbrack
 radd
 RAII
 Ramanan
 randtbl
+rapidscat
 raspberrypi
 raspi
 RATEGROUPDRIVER
@@ -1118,6 +1174,8 @@ reder
 refactor
 refactoring
 refspec
+REFTOPOLOGY
+REFTOPOLOGYDEFS
 regexp
 regexs
 relaxng
@@ -1142,7 +1200,6 @@ riverbankcomputing
 Rizvi
 rootdir
 ror
-rp
 rpaetz
 rpi
 RPIDEMO
@@ -1160,6 +1217,7 @@ rxor
 saddr
 Saikiran
 Sanchit
+sanitizers
 sats
 savelist
 saveop
@@ -1167,8 +1225,10 @@ saxutils
 sbb
 SBF
 sbin
+SBINDIR
 sbt
 scanf
+scatterometer
 sched
 schem
 schematron
@@ -1178,6 +1238,7 @@ scons
 scp
 scrollbars
 sdd
+SDFLIGHT
 searchdata
 SEARCHENGINE
 segfault
@@ -1197,7 +1258,9 @@ SETFL
 setinheritsched
 setitem
 SETLOGGING
+setm
 setop
+setprecision
 setprotocol
 setquaternion
 setschedparam
@@ -1217,6 +1280,7 @@ sface
 sfregoso
 sgl
 SGN
+SHAREDSTATEDIR
 SHELLCOMMAND
 Shenker
 showinitializer
@@ -1233,12 +1297,12 @@ SIZ
 sizeof
 sloc
 Smath
+smallsat
 SNDTIMEO
 snprintf
 sockaddr
 SOCKETHELPER
 SOCKETIPDRIVER
-SOCKETIPDRIVERCFG
 SOCKETREADTASK
 socklen
 somechan
@@ -1253,6 +1317,7 @@ SOURCEDIR
 sourceforge
 Sourcetrail
 sourcing
+spacetech
 sparc
 SPHINXBUILD
 SPHINXOPTS
@@ -1264,12 +1329,15 @@ srand
 srandom
 srange
 src
+srcs
+SRCS
 sre
 sscanf
 ssh
 ssize
 SSL
 sss
+sstream
 Ssymbols
 stacklevel
 stackoverflow
@@ -1301,6 +1369,7 @@ stringchan
 stringified
 Stringpacket
 stringparam
+stringstream
 STRINGUTILS
 strlen
 strncat
@@ -1313,6 +1382,7 @@ strtol
 strtoul
 subdir
 subfolder
+subfolders
 subgrouping
 subhist
 subhistory
@@ -1320,6 +1390,7 @@ subpage
 subseconds
 subtargets
 sudo
+suppr
 SVCLOGFILE
 SVCLOGFILEL
 svipc
@@ -1327,8 +1398,10 @@ swcaegitadmin
 SYMLINKS
 synchronicity
 synopsys
+SYSCONFDIR
 SYSFS
 sysinfo
+sysroot
 systemd
 tabbedwidths
 tabccitt
@@ -1405,7 +1478,6 @@ timothycanham
 tions
 tjh
 TKC
-tl
 tlc
 tlist
 tlm
@@ -1439,6 +1511,7 @@ toklist
 TOLOWER
 toolchain
 toolchains
+toolset
 tooltip
 topologyapp
 Torvalds
@@ -1455,13 +1528,12 @@ trimwhitespace
 trinomials
 TRUNC
 truncstring
-tt
 tts
 ttype
 Tuszynski
 TXD
-typedef'ed
 typedef
+typedef'ed
 typeid
 typeinfo
 typelist
@@ -1470,6 +1542,7 @@ typeslist
 typetoken
 tzinfo
 uart
+UBSAN
 ubuntu
 ucf
 Uchenik
@@ -1496,6 +1569,7 @@ unistd
 Unithem
 unittest
 UNITTESTASSERT
+unittests
 unprintables
 unsubscribe
 upcalls
@@ -1517,6 +1591,7 @@ valgrind
 validator
 vals
 valud
+vbai
 venv
 VERSIONED
 versioning
@@ -1526,6 +1601,7 @@ vfs
 vhd
 vhdl
 VID
+viewcontent
 viewforum
 virt
 virtualbox
@@ -1533,7 +1609,6 @@ virtualization
 virtualized
 vla
 vlist
-vm
 VMIN
 vmstat
 vsnprintf
@@ -1544,7 +1619,7 @@ vwong
 vxworks
 VXWORKSLOGASSERT
 WAITALL
-Watney
+watney
 Wconversion
 Wdog
 weakref
@@ -1566,7 +1641,6 @@ WORKDIR
 workflow
 worklist
 Woverloaded
-wp
 writelines
 WRONLY
 wrs
@@ -1579,6 +1653,8 @@ wxgui
 Xabcdefx
 xapian
 xargs
+Xcode
+XBee
 xcode
 xdf
 xdffe
@@ -1592,8 +1668,10 @@ xon
 xor
 XPath
 xsh
+xsltproc
 xxxx
 XYZZY
 yacc
 yacgen
 yyyymmdd
+zmq
