@@ -13,6 +13,30 @@ The standard patterns include:
 
 
 
+## Macro `restrict_platforms`:
+
+Restricts a CMakeLists.txt file to a given list of platforms. This prevents usage on platforms for which the module
+is incapable of being used and replaces the historical pattern of an if-tree detecting unsupported platforms.
+
+Usage:
+   restrict_platforms(Linux Darwin) # Restricts to Linux and Darwin platforms
+
+Args:
+  ARGN: list of platforms that are supported
+
+
+## Macro `prevent_prescan`:
+
+Prevents a CMakeLists.txt file from being processed in the prescan phase of the project. Will generate fake targets
+for all those targets specified to ensure that dependencies may be attached to these targets in the larger system.
+
+Usage:
+   prevent_prescan(target1 target2 ...) # Generate fake targets and skip prescan
+
+Args:
+  ARGN: list of targets to synthesize
+
+
 ## Function `add_fprime_subdirectory`:
 
 Adds a subdirectory to the build system. This allows the system to find new available modules,
@@ -48,13 +72,13 @@ autocoding and source inputs, and (optionally) any non-standard link dependencie
 
 Required variables (defined in calling scope):
 
-- **SOURCE_FILES:** cmake list of input source files. Place any "*.fpp", "*Ai.xml", "*.c", "*.cpp"
+- **SOURCE_FILES:** cmake list of input source files. Place any "*.fpp", "*.c", "*.cpp"
   etc files here. This list will be split into autocoder inputs, and hand-coded sources based on the name/type.
 
 **i.e.:**
 ```
 set(SOURCE_FILES
-    MyComponentAi.xml
+    MyComponent.fpp
     SomeFile.cpp
     MyComponentImpl.cpp)
 ```
@@ -81,7 +105,7 @@ This is the only required lines in a module CMakeLists.txt.
 
 ```
 set(SOURCE_FILE
-    MyComponentAi.xml
+    MyComponent.fpp
     SomeFile.cpp
     MyComponentImpl.cpp)
 
@@ -104,7 +128,7 @@ Modules requiring only autocoding may just specify *.xml files.
 
 ```
 set(SOURCE_FILE
-    MyComponentAi.xml)
+    MyComponent.fpp)
 
 register_fprime_module()
 ```
@@ -117,7 +141,7 @@ for some fprime modules that implement to a generic interface like the console l
 
 ```
 set(SOURCE_FILE
-    MyComponentAi.xml
+    MyComponent.fpp
     SomeFile.cpp
     MyComponentImpl.cpp)
 
@@ -146,14 +170,14 @@ Required variables (defined in calling scope):
 
 
 - **EXECUTABLE_NAME:** (optional) executable name supplied. If not set, nor passed in, then
-                    PROJECT_NAME from the CMake definitions is used.
+                    FPRIME_CURRENT_MODULE from the CMake definitions is used.
 
-- **SOURCE_FILES:** cmake list of input source files. Place any "*Ai.xml", "*.c", "*.cpp"
+- **SOURCE_FILES:** cmake list of input source files. Place any "*.fpp", "*.c", "*.cpp"
                  etc. files here. This list will be split into autocoder inputs and sources.
 **i.e.:**
 ```
 set(SOURCE_FILES
-    MyComponentAi.xml
+    MyComponent.fpp
     SomeFile.cpp
     MyComponentImpl.cpp)
 ```
@@ -208,12 +232,12 @@ This is typically called from within the top-level CMakeLists.txt file that defi
 
 Required variables (defined in calling scope):
 
-- **SOURCE_FILES:** cmake list of input source files. Place any "*Ai.xml", "*.c", "*.cpp"
+- **SOURCE_FILES:** cmake list of input source files. Place any "*.fpp", "*.c", "*.cpp"
                     etc. files here. This list will be split into autocoder inputs and sources.
 **i.e.:**
 ```
 set(SOURCE_FILES
-    MyComponentAi.xml
+    MyComponent.fpp
     SomeFile.cpp
     MyComponentImpl.cpp)
 ```
@@ -225,7 +249,7 @@ set(SOURCE_FILES
 **i.e.:**
 ```
 set(MOD_DEPS
-    ${PROJECT_NAME}/Top
+    ${FPRIME_CURRENT_MODULE}/Top
     Module1
     Module2
     -lpthread)
@@ -233,23 +257,20 @@ set(MOD_DEPS
 
 **Note:** this operates almost identically to `register_fprime_executable` and `register_fprime_module` with respect
 to the variable definitions. The difference is deployment targets will be run (e.g. dictionary generation), and the
-executable binary will be named for ${PROJECT_NAME}.
+executable binary will be named after the module, or if project when defined directly in a project CMakeLists.txt
 
 ### Standard fprime Deployment Example ###
 
-To create a standard fprime deployment, an executable needs to be created. This executable
-uses the CMake PROJECT_NAME as the executable name. Thus, it can be created with the following
-source lists. In most fprime deployments, some modules must be specified as they don't tie
-directly to an Ai.xml.
+To create a standard fprime deployment, an the user must call `register_fprime_deployment()` after defining
+SOURCE_FILES and MOD_DEPS.
 
 ```
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"
 )
-# Note: supply non-explicit dependencies here. These are implementations to an XML that is
-# defined in a different module.
+# Note: supply dependencies that cannot be detected via the model here.
 set(MOD_DEPS
-  ${PROJECT_NAME}/Top
+  ${FPRIME_CURRENT_MODULE}/Top
 )
 register_fprime_deployment()
 ```
@@ -262,7 +283,7 @@ management and fprime autocoding capabilities. This requires three variables def
 unit test name, autocoding and source inputs for the unit test, and (optionally) any
 non-standard link dependencies.
 
-**Note:** This is ONLY run when the build type is TESTING. Unit testing is restricted to this build type as fprime
+**Note:** This is ONLY run when the BUILD_TESTING is enabled. Unit testing is restricted to this build type as fprime
           sets additional flags when building for unit tests.
 
 Required variables (defined in calling scope):
@@ -271,14 +292,14 @@ Required variables (defined in calling scope):
 - **UT_NAME:** (optional) executable name supplied. If not supplied, or passed in, then
   the <MODULE_NAME>_ut_exe will be used.
 
-- **UT_SOURCE_FILES:** cmake list of UT source files. Place any "*Ai.xml", "*.c", "*.cpp"
+- **UT_SOURCE_FILES:** cmake list of UT source files. Place any "*.fpp", "*.c", "*.cpp"
   etc. files here. This list will be split into autocoder inputs or sources. These sources only apply to the unit
   test.
 
  **i.e.:**
 ```
 set(UT_SOURCE_FILES
-    MyComponentAi.xml
+    MyComponent.fpp
     SomeFile.cpp
     MyComponentImpl.cpp)
 ```
@@ -297,15 +318,19 @@ set(UT_MOD_DEPS
 ```
  **Note:** this is typically called after any other register calls in the module.
 
+- **UT_AUTO_HELPERS:** (optional) When set ON, a test helper file will be generated that auto-codes the connect ports
+  and init components methods. This removes the maintenance overhead for these functions. ON additionally adds test
+  source directories to the include path for the unit test target. When set to OFF, this helper file will be created
+  when generating implementation templates allowing users to modify these files. Default: OFF
+
 ### Unit-Test Example ###
 
-A standard unit test defines only UT_SOURCES. These sources have the test cpp files and the module
-Ai.xml of the module being tested. This is used to generate the GTest and TesterBase files from this
-Ai.xml. The other UT source files define the implementation of the test.
+A standard unit test defines only UT_SOURCES. These sources have the test cpp files and the model
+.fpp of the module being tested. This is used to generate the GTest harness.
 
 ```
 set(UT_SOURCE_FILES
-  "${FPRIME_FRAMEWORK_PATH}/Svc/CmdDispatcher/CommandDispatcherComponentAi.xml"
+  "${FPRIME_FRAMEWORK_PATH}/Svc/CmdDispatcher/CommandDispatcher.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/test/ut/CommandDispatcherTester.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/test/ut/CommandDispatcherImplTester.cpp"
 )
